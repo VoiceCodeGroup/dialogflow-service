@@ -1,0 +1,14 @@
+{
+  "name": "dialogflow-service",
+  "scripts": {
+    "start": "micro",
+    "dev": "micro-dev"
+  },
+  "dependencies": {
+    "micro": "latest",
+    "dialogflow": "^0.3.0"
+  },
+  "devDependencies": {
+    "micro-dev": "^3.0.0"
+  }
+}
