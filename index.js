@@ -13,8 +13,8 @@ const sessionClient = new dialogflow.SessionsClient({ keyFilename: 'VoxCode-2531
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
 module.exports = async (req, res) => {
-  const query = `create a red square`;
-
+  const data = await json(req);
+  const query = data.text;
   // The text query request.
   const request = {
     session: sessionPath,
@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
       }
     })
     .catch(err => {
-      return '<div>Hello World!</div>';
       console.error('ERROR:', err);
+      return '<div>Hello World!</div>';
     });
 };
