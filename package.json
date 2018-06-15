@@ -5,8 +5,9 @@
     "dev": "micro-dev"
   },
   "dependencies": {
+    "dialogflow": "^0.3.0",
     "micro": "latest",
-    "dialogflow": "^0.3.0"
+    "micro-cors": "^0.1.0"
   },
   "devDependencies": {
     "micro-dev": "^3.0.0"

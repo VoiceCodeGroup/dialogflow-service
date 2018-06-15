@@ -1,5 +1,6 @@
 const dialogflow = require('dialogflow');
 const { buffer, text, json } = require('micro');
+const cors = require('micro-cors')();
 
 const projectId = 'voxcode-3b433';
 const sessionId = 'quickstart-session-id';
@@ -12,8 +13,9 @@ const sessionClient = new dialogflow.SessionsClient({ keyFilename: 'VoxCode-2531
 // Define session path
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
-module.exports = async (req, res) => {
+ const handler = async (req, res) => {
   const data = await json(req);
+  console.log(data);
   const query = data.text;
   // The text query request.
   const request = {
@@ -33,7 +35,11 @@ module.exports = async (req, res) => {
       const result = responses[0].queryResult;
       console.log(`  Query: ${result.queryText}`);
       console.log(`  Response: ${result.fulfillmentText}`);
-      return result.fulfillmentText;
+      //Won't parse objects that have double quotation marks in them already 
+      var obj = JSON.parse(`{"response": "${result.fulfillmentText}"}`);
+      console.log(obj);
+      return obj;
+
       if (result.intent) {
         console.log(`  Intent: ${result.intent.displayName}`);
       } else {
@@ -45,3 +51,5 @@ module.exports = async (req, res) => {
       return '<div>Hello World!</div>';
     });
 };
+
+module.exports = cors(handler);
