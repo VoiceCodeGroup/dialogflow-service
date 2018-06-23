@@ -74,6 +74,8 @@ app.get('/prettier', function(req, res) {
   res.send(prettier.format('<div>hi<div>hi<div>div</div></div></div>'));
 });
 
-app.listen(8000, function() {
-  console.log('Example app listening on port 8000!');
+const port = process.env.PORT || 8000;
+
+app.listen(port, function() {
+  console.log('Example app listening on port!' + port);
 });
