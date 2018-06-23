@@ -1,7 +1,7 @@
 {
   "name": "dialogflow-service",
   "scripts": {
-    "start": "micro",
+    "start": "micro -l tcp://0.0.0.0:${PORT-3000}",
     "dev": "micro-dev"
   },
   "dependencies": {
